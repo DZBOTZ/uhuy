@@ -93,7 +93,7 @@ module.exports = alpha = async (alpha, m, chatUpdate, store, reSize) => {
 		const time = moment(Date.now()).tz(timezone).locale('id').format('HH:mm:ss')
         const wita = moment(Date.now()).tz('Asia/Makassar').locale('id').format('HH:mm:ss')
         const wit = moment(Date.now()).tz('Asia/Jayapura').locale('id').format('HH:mm:ss')
-        const salam = moment(Date.now()).tz('Asia/Jakarta').locale('id').format('a')
+        const salam = moment(Date.now()).tz(timezone).locale('id').format('a')
         const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
         hit_today.push(command)
         const args = body.trim().split(/ +/).slice(1)
@@ -133,7 +133,7 @@ module.exports = alpha = async (alpha, m, chatUpdate, store, reSize) => {
 		const fgclink = {key: {participant: "0@s.whatsapp.net","remoteJid": "0@s.whatsapp.net"},"message": {"groupInviteMessage": {"groupJid": "6288213840883-1616169743@g.us","inviteCode": "m","groupName": "P", "caption": `© ${ownername}`, 'jpegThumbnail': pp_bot}}}
 		const fvideo = {key: { fromMe: false,participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "6289643739077-1613049930@g.us" } : {}) },message: { "videoMessage": { "title":`${pushname}`, "h": `Hmm`,'seconds': '359996400', 'caption': `${pushname}`, 'jpegThumbnail': pp_bot}}}
 		const floc = {key : {participant : '0@s.whatsapp.net'},message: {locationMessage: {name: `${ownername}`,jpegThumbnail: pp_bot}}}
-		const fkontak = { key: {participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: `6283136505591-1614953337@g.us` } : {}) }, message: { 'contactMessage': { 'displayName': `${pushname}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${pushname},;;;\nFN:${pushname},\nitem1.TEL;waid=${sender.split('@')[0]}:${sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': pp_bot, thumbnail: pp_bot,sendEphemeral: true}}}
+		const fkontak = { key: {participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: `status@broadcast` } : {}) }, message: { 'contactMessage': { 'displayName': `${pushname}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${pushname},;;;\nFN:${pushname},\nitem1.TEL;waid=${sender.split('@')[0]}:${sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': pp_bot, thumbnail: pp_bot,sendEphemeral: true}}}
 		let picaks = [flaming,fluming,flarun,flasmurf]
 		let picak = picaks[Math.floor(Math.random() * picaks.length)]
 		
@@ -1077,7 +1077,7 @@ if (!m.isGroup) return reply(lang.groupOnly())
 			if (!isGroupAdmins && !isGroupOwner && !isCreator) return reply(lang.adminOnly())
 			if(!text) return reply(`Contoh penggunaan: ${prefix + command} Payment`)
 			db.data.settings[botNumber].captionPay = text
-			alpha.sendButMessage(m.chat, lang.ok() + ' ' + command + '\n\n' + text, `© ${ownername}`, [{buttonId: 'menu', buttonText: {displayText: 'Menu'}, type: 1}], {quoted: fgif})
+			alpha.sendButMessage(m.chat, lang.ok() + ' ' + command + '\n\n' + text, `© ${ownername}`, [{buttonId: 'menu', buttonText: {displayText: 'Menu'}, type: 1}], {quoted: fkontak})
 			}
 			break
             case 'donasi': case 'donate':{
@@ -1923,7 +1923,7 @@ const buttojns = [
 							alpha.sendKatalog2(m.chat, "ALL MENU BOT", lang.listMenu(time, salam, pushname, prefix), pp_bot, {quoted:m})
 							}
 						if(typemenu == 'list'){
-							alpha.sendListMenu(m.chat, `╭─⬣「 _*INFO USER*_ 」⬣\n│  *Name* : ${pushname}\n│  *Number* : ${sender.split("@")[0]}\n│  *Status* : ${isCreator? ` Owner️ ${botname}` :`User ${botname}`}\n╰─⬣\n\n╭─⬣「 _*INFO BOT*_ 」⬣\n│ *Prefix* :  ${prefix} \n│ *Name* : ${botname}\n│ *Owner* : ${ownername}\n│ *Mode* : ${alpha.public ? 'Public-Mode' : 'Self-Mode'}\n│ *Runtime* : ${runtime(process.uptime())}\n│ *Lib* : Baileys-Md@4.0.0\n╰─⬣\n\n╭─⬣「 _*INDONESIAN TIME*_ 」⬣\n│ *Wib* : ${time}\n│ *Wita* : ${wita}\n│ *Wit* : ${wit}  \n╰─⬣`, `© ${ownername}`, `Selamat ${salam} ${pushname} ☺️`, `CLICK HERE`, {quoted:fgif})
+							alpha.sendListMenu(m.chat, `╭─⬣「 _*INFO USER*_ 」⬣\n│  *Name* : ${pushname}\n│  *Number* : ${sender.split("@")[0]}\n│  *Status* : ${isCreator? ` Owner️ ${botname}` :`User ${botname}`}\n╰─⬣\n\n╭─⬣「 _*INFO BOT*_ 」⬣\n│ *Prefix* :  ${prefix} \n│ *Name* : ${botname}\n│ *Owner* : ${ownername}\n│ *Mode* : ${alpha.public ? 'Public-Mode' : 'Self-Mode'}\n│ *Runtime* : ${runtime(process.uptime())}\n│ *Lib* : Baileys-Md@4.0.0\n╰─⬣\n\n╭─⬣「 _*INDONESIAN TIME*_ 」⬣\n│ *Wib* : ${time}\n│ *Wita* : ${wita}\n│ *Wit* : ${wit}  \n╰─⬣`, `© ${ownername}`, `Selamat ${salam} ${pushname} ☺️`, `CLICK HERE`, {quoted:fkontak})
 						}
 					}
 					break    
